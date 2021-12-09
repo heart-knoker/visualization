@@ -28,7 +28,7 @@ connection.connect((err) => {
 //トップページの表示(top.ejsまだ)//
 app.get('/', (req, res) => {
   res.render('top.ejs');
-})
+});
 
 //料理名一覧の表示//
 app.get('/dishes', (req, res) => {
@@ -38,4 +38,6 @@ app.get('/dishes', (req, res) => {
       res.render('dishes.ejs', {items:results});
     }
   );
-})
+});
+
+app.listen(3000);
