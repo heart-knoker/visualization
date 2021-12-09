@@ -1,3 +1,4 @@
+const config = require('./config');
 const express = require('express');
 const mysql = require('mysql');
 
@@ -9,10 +10,10 @@ app.use(express.urlencoded({extended: false}));
 
 //mysqlとnodeを接続する//
 const connection = mysql.createConnection({
-	host:'localhost',
-	user: 'root',
-	password: 'Endasugoi7',
-	database: 'foot_print'
+	host: config.host,
+	user: config.user,
+	password: config.password,
+	database: config.database
 	//ここでdatabaseを選んでいるためこの中にitemsを創らないと作動しない//
 });
 
@@ -25,10 +26,28 @@ connection.connect((err) => {
 	console.log('success');
 });
 
-//トップページの表示(top.ejsまだ)//
+
+//一時利用
 app.get('/', (req, res) => {
   res.render('top.ejs');
 });
+
+app.get('/index', (req, res) => {
+  connection.query(
+    'SELECT * FROM items',
+    (error, results) => {
+      // res.renderの第２引数にオブジェクトを追加してください
+      res.render('index.ejs', {items:results});
+    }
+  );
+});
+//一時利用ここまで
+
+//
+//トップページの表示(top.ejsまだ)
+//app.get('/', (req, res) => {
+//  res.render('top.ejs');
+//});
 
 //料理名一覧の表示//
 app.get('/dishes', (req, res) => {
@@ -40,4 +59,5 @@ app.get('/dishes', (req, res) => {
   );
 });
 
-app.listen(3000);
+app.listen(8080);
+//
