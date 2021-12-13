@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LIST APP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/send_url.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="header-logo">LIST APP</a>
+    </header>
+    <div class="container">
+      <div class="container-header">
+        <h1>生産地一覧</h1>
+      </div>
+      <div class="index-table-wrapper">
+        <div class="table-head">
+          <!--<span class="id-column">ID</span>-->
+          <span>生産地一覧</span>
+        </div>
+        <ul class="table-body">
+          <% items.forEach((item) => { %>
+            <li>
+              <div class="item-data">
+                <span class="area-column"><%= item.area %></span>
+                <!-- ここに表示するコラムをitem.の形で書く -->
+                <a href="/areas?dishes=<%= item.dishes %>&name=<%=item.name%>&area=<%=item.area%>">選択</a>
+              </div>
+            </li>
+          <% }) %>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

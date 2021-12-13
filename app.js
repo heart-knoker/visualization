@@ -26,30 +26,13 @@ connection.connect((err) => {
 	console.log('success');
 });
 
-
-//一時利用
+//トップページ
 app.get('/', (req, res) => {
   res.render('top.ejs');
 });
 
-app.get('/index', (req, res) => {
-  connection.query(
-    'SELECT * FROM items',
-    (error, results) => {
-      // res.renderの第２引数にオブジェクトを追加してください
-      res.render('index.ejs', {items:results});
-    }
-  );
-});
-//一時利用ここまで
 
-//
-//トップページの表示(top.ejsまだ)
-//app.get('/', (req, res) => {
-//  res.render('top.ejs');
-//});
-
-//料理名一覧の表示//
+//dishes料理名一覧の表示 (index.ejsを参考に)//
 app.get('/dishes', (req, res) => {
   connection.query(
     'SELECT DISTINCT dishes FROM items',
@@ -58,6 +41,30 @@ app.get('/dishes', (req, res) => {
     }
   );
 });
+
+
+//編集ボタンによる変遷(id取得)(dishes.ejsとnames.ejsの間)//
+app.get('/names', (req, res) => {
+	connection.query(
+		'SELECT name FROM items WHERE dishes=?',
+		[req.query.dishes],
+		(error, results) => {
+			res.render('names.ejs', {items:results});
+		}
+	);
+});
+
+app.get('/areas', (req, res) => {
+	connection.query(
+		'SELECT (dishes, name, area) FROM items WHERE (dishes=?, name=?)',
+		[req.query.dishes, req.query.name],
+		(error, results) => {
+			res.render('areas.ejs', {items:results});
+		}
+	);
+});
+
+//次は外部API//
 
 app.listen(8080);
 //

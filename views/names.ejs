@@ -12,23 +12,20 @@
     </header>
     <div class="container">
       <div class="container-header">
-        <h1>買い物リスト</h1>
+        <h1>食材一覧</h1>
       </div>
       <div class="index-table-wrapper">
         <div class="table-head">
-          <span class="id-column">ID</span>
-          <span>買うもの</span>
+          <!--<span class="id-column">ID</span>-->
+          <span>食材名</span>
         </div>
-        <!-- itemsを削除してください -->
-
-        <!-- ここまで削除してください -->
         <ul class="table-body">
           <% items.forEach((item) => { %>
             <li>
               <div class="item-data">
-                <span class="id-column"><%= item.id %></span>
                 <span class="name-column"><%= item.name %></span>
-                <span class="area-column"><%= item.area %></span>
+                <!-- ここに表示するコラムをitem.の形で書く -->
+                <a href="/areas?dishes=<%= item.dishes %>&name=<%=item.name%>">選択</a>
               </div>
             </li>
           <% }) %>
