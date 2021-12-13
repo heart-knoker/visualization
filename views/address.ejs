@@ -12,20 +12,20 @@
     </header>
     <div class="container">
       <div class="container-header">
-        <h1>食材一覧</h1>
+        <h1>住所一覧</h1>
       </div>
       <div class="index-table-wrapper">
         <div class="table-head">
           <!--<span class="id-column">ID</span>-->
-          <span>食材名</span>
+          <span>住所一覧</span>
         </div>
         <ul class="table-body">
           <% items.forEach((item) => { %>
             <li>
               <div class="item-data">
-                <span class="name-column"><%= item.name %></span>
-                <!-- ここに表示するコラムをitem.の形で書く -->
-                <a href="/areas?name=<%=item.name%>&dishes=<%=item.dishes%>">選択</a>
+                <span class="address-column"><%=item.p_address%><%=item.s_address%></span>
+                <!-- 今回は選択の表示として2つのadressを飛ばせるようにしておく＞ -->
+                <a href="/api?p_address=<%=item.p_address%>&s_address=<%=item.s_address%>">地図の表示</a> 
               </div>
             </li>
           <% }) %>

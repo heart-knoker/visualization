@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 //dishes料理名一覧の表示 (index.ejsを参考に)//
 app.get('/dishes', (req, res) => {
   connection.query(
-    'SELECT DISTINCT dishes FROM items',
+    'SELECT * FROM items',
     (error, results) => {
       res.render('dishes.ejs', {items:results});
     }
@@ -46,7 +46,7 @@ app.get('/dishes', (req, res) => {
 //編集ボタンによる変遷(id取得)(dishes.ejsとnames.ejsの間)//
 app.get('/names', (req, res) => {
 	connection.query(
-		'SELECT name FROM items WHERE dishes=?',
+		'SELECT * FROM items WHERE dishes=?',
 		[req.query.dishes],
 		(error, results) => {
 			res.render('names.ejs', {items:results});
@@ -56,14 +56,25 @@ app.get('/names', (req, res) => {
 
 app.get('/areas', (req, res) => {
 	connection.query(
-		'SELECT (dishes, name, area) FROM items WHERE (dishes=?, name=?)',
-		[req.query.dishes, req.query.name],
+		'SELECT * FROM items WHERE (name=? AND dishes=?)',
+		[req.query.name, req.query.dishes],
 		(error, results) => {
 			res.render('areas.ejs', {items:results});
 		}
 	);
 });
 
+
+//仮説でアドレスを表示するaddress.ejsを創る//
+app.get('/address', (req, res) => {
+	connection.query(
+		'SELECT * FROM items WHERE (dishes=? AND name=? AND area=?)',
+		[req.query.dishes, req.query.name, req.query.area],
+		(error, results) => {
+			res.render('address.ejs', {items:results});
+		}
+	);
+});
 //次は外部API//
 
 app.listen(8080);
