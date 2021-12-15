@@ -80,8 +80,9 @@ app.get('/address', (req, res) => {
 });
 
 app.get('/api', (req, res) => {
-	res.render('googlemaps.ejs');
-})
+	res.render('googlemaps.ejs',
+	{p_address:req.query.p_address, s_address:req.query.s_address});
+});
 
 app.listen(8080);
 

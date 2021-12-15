@@ -3,20 +3,22 @@
   <head>
     <title>Directions Service</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link rel="stylesheet" type="text/css" href="/css/mapstyle.css" />
+    <link rel="stylesheet" type="text/css" href="css/mapstyle.css" />
     <!-- ここのパスが間違っているかもしれない。それが原因でした。-->
-    <script src="/js/index.js"></script>
+    <script src="js/index.js" charset="utf-8"></script>
   </head>
   <body>
     <div id="floating-panel">
       <b>Start: </b>
       <select id="start">
-          <option value="kanagawa, yokohama">yokohama</option>
+          <option value="nagano, matsumoto" charset="utf-8">A</option>
+          <option value="hokkaido, wakkanai">A_</option>
       </select>
       <b>End: </b>
       <select id="end">
       <!--これ、eachの中身をlistにしたほうがいいかも。あとidを中にいれるか？-->
-          <option value="hokkaido, wakkanai">wakkanai</option>
+          <option value="kanagawa, fujisawa" charset="utf-8">B</option>
+          <option value="kagoshima, satuma"></option>
       </select>
       <!--これセレクトの意味ないか？-->
     </div>
