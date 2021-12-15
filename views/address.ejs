@@ -23,9 +23,9 @@
           <% items.forEach((item) => { %>
             <li>
               <div class="item-data">
-                <span class="address-column"><%=item.p_address%><%=item.s_address%></span>
-                <!-- 今回は選択の表示として2つのadressを飛ばせるようにしておく＞ -->
-                <a href="/api?p_address=<%=item.p_address%>&s_address=<%=item.s_address%>">地図の表示</a> 
+                <span class="address-column"><%= item.p_address %></span>
+                <!-- ここに表示するコラムをitem.の形で書く -->
+                <a href="/api">選択</a>
               </div>
             </li>
           <% }) %>

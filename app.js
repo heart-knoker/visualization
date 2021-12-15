@@ -3,6 +3,9 @@ const express = require('express');
 const mysql = require('mysql');
 
 const app = express();
+const path = require('path');
+const fs = require('fs');
+
 
 //使用するcssファイル使用と受け取り動作を可能にするexpressへの命令
 app.use(express.static('public'));
@@ -65,17 +68,26 @@ app.get('/areas', (req, res) => {
 });
 
 
-//仮説でアドレスを表示するaddress.ejsを創る//
+//仮説でアドレスを表示するaddress.ejsで一つに絞る//
 app.get('/address', (req, res) => {
 	connection.query(
-		'SELECT * FROM items WHERE (dishes=? AND name=? AND area=?)',
-		[req.query.dishes, req.query.name, req.query.area],
+		'SELECT * FROM items WHERE (name=? AND dishes=? AND area=?)',
+		[req.query.name, req.query.dishes, req.query.area],
 		(error, results) => {
 			res.render('address.ejs', {items:results});
 		}
 	);
 });
-//次は外部API//
+
+app.get('/api', (req, res) => {
+	res.render('googlemaps.ejs');
+})
 
 app.listen(8080);
+
+//以下は旧式の書き方でこっちではできたっぽい//
+
+//次は外部API、変数にreq.queryを格納したいだけなのだがいけるか//
+//おそらくstaticの中身はコマンドプロンプトの中ということ。//
+
 //

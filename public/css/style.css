@@ -313,3 +313,6 @@ header {
   color: #80bcff;
   transition: all 0.3s ease;
 }
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */

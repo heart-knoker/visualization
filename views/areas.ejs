@@ -23,7 +23,7 @@
           <% items.forEach((item) => { %>
             <li>
               <div class="item-data">
-                <span class="area-column"><%=item.area%></span>
+                <span class="area-column"><%= item.area %></span>
                 <!-- ここに表示するコラムをitem.の形で書く -->
                 <a href="/address?name=<%=item.name%>&dishes=<%=item.dishes%>&area=<%=item.area%>">選択</a>
               </div>
